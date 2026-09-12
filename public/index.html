@@ -28,16 +28,22 @@
           <span class="logo__tagline">Little Rock, AR</span>
         </div>
       </div>
-      <nav class="nav" id="nav">
-        <a href="#services" class="nav__link">Services</a>
-        <a href="#why-us" class="nav__link">Why Us</a>
-        <a href="#gallery" class="nav__link">Gallery</a>
-        <a href="#contact" class="nav__link">Contact</a>
-        <a href="#appointment" class="btn btn--primary nav__cta">Book Now</a>
-      </nav>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="header__actions">
+        <nav class="nav" id="nav">
+          <a href="#services" class="nav__link">Services</a>
+          <a href="#why-us" class="nav__link">Why Us</a>
+          <a href="#gallery" class="nav__link">Gallery</a>
+          <a href="#contact" class="nav__link">Contact</a>
+          <a href="#appointment" class="btn btn--primary nav__cta">Book Now</a>
+        </nav>
+        <div class="lang-switch" aria-label="Language selector">
+          <button type="button" class="lang-switch__btn is-active" data-lang="en" id="langEn" aria-pressed="true">EN</button>
+          <button type="button" class="lang-switch__btn" data-lang="es" id="langEs" aria-pressed="false">ES</button>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -208,7 +214,7 @@
           <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80&auto=format&fit=crop" alt="Modern dental office reception" loading="lazy" />
         </div>
         <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1571772996211-2912542835b5?w=400&q=80&auto=format&fit=crop" alt="Patient smiling after treatment" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1600170311833-c2cf5280ce49?w=400&q=80&auto=format&fit=crop" alt="Patient smiling after treatment" loading="lazy" />
         </div>
       </div>
     </div>
@@ -233,15 +239,18 @@
           <div class="contact-card__item">
             <i class="fa-solid fa-phone"></i>
             <div>
-              <strong>Call or Text</strong>
-              <a href="tel:5013131616">501-313-1616</a>
+              <strong>Call, Text, or Email</strong>
+              <div class="contact-card__links">
+                <a href="tel:5013131616">501-313-1616</a>
+                <a href="mailto:Help@EmergencyDentalArkansas.com">Help@EmergencyDentalArkansas.com</a>
+              </div>
             </div>
           </div>
           <div class="contact-card__item">
             <i class="fa-solid fa-clock"></i>
             <div>
               <strong>Hours</strong>
-              <span>Mon–Fri: 8am – 7pm<br />Sat–Sun: 9am – 5pm</span>
+              <span>Mon–Fri: 6pm – 9pm<br />Sat–Sun: 8am – 7pm</span>
             </div>
           </div>
         </div>
@@ -261,50 +270,50 @@
         <form id="appointmentForm" class="appt-form" novalidate>
           <div class="form-row">
             <div class="form-group">
-              <label for="name">Full Name <span class="required">*</span></label>
+              <label for="name"><span class="label-text">Full Name</span> <span class="required">*</span></label>
               <input type="text" id="name" name="name" placeholder="Jane Smith" required />
             </div>
             <div class="form-group">
-              <label for="phone">Phone Number <span class="required">*</span></label>
+              <label for="phone"><span class="label-text">Phone Number</span> <span class="required">*</span></label>
               <input type="tel" id="phone" name="phone" placeholder="501-555-0100" required />
             </div>
           </div>
           <div class="form-group">
-            <label for="email">Email Address</label>
+            <label for="email"><span class="label-text">Email Address</span></label>
             <input type="email" id="email" name="email" placeholder="jane@example.com" />
           </div>
           <div class="form-group">
-            <label for="service">Type of Service <span class="required">*</span></label>
+            <label for="service"><span class="label-text">Type of Service</span> <span class="required">*</span></label>
             <select id="service" name="service" required>
               <option value="" disabled selected>Select a service…</option>
-              <option value="Emergency Toothache">Emergency Toothache</option>
-              <option value="Broken / Chipped Tooth">Broken / Chipped Tooth</option>
-              <option value="Dental Abscess / Infection">Dental Abscess / Infection</option>
-              <option value="Lost Filling or Crown">Lost Filling or Crown</option>
-              <option value="Tooth Extraction">Tooth Extraction</option>
-              <option value="Cleaning &amp; Exam">Cleaning &amp; Exam</option>
-              <option value="Other / Not Sure">Other / Not Sure</option>
+              <option value="emergency-toothache">Emergency Toothache</option>
+              <option value="broken-chipped-tooth">Broken / Chipped Tooth</option>
+              <option value="dental-abscess-infection">Dental Abscess / Infection</option>
+              <option value="lost-filling-crown">Lost Filling or Crown</option>
+              <option value="tooth-extraction">Tooth Extraction</option>
+              <option value="cleaning-exam">Cleaning &amp; Exam</option>
+              <option value="other-not-sure">Other / Not Sure</option>
             </select>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="date">Preferred Date</label>
+              <label for="date"><span class="label-text">Preferred Date</span></label>
               <input type="date" id="date" name="date" />
             </div>
             <div class="form-group">
-              <label for="time">Preferred Time</label>
+              <label for="time"><span class="label-text">Preferred Time</span></label>
               <select id="time" name="time">
                 <option value="" disabled selected>Select a time…</option>
-                <option value="Morning (8am–12pm)">Morning (8am–12pm)</option>
-                <option value="Afternoon (12pm–4pm)">Afternoon (12pm–4pm)</option>
-                <option value="Evening (4pm–7pm)">Evening (4pm–7pm)</option>
-                <option value="Weekend">Weekend</option>
-                <option value="As Soon As Possible">ASAP</option>
+                <option value="weekday-evening">Weekday Evening (6pm–9pm)</option>
+                <option value="weekend-morning">Saturday or Sunday Morning (8am–12pm)</option>
+                <option value="weekend-afternoon">Saturday or Sunday Afternoon (12pm–4pm)</option>
+                <option value="weekend-evening">Saturday or Sunday Evening (4pm–7pm)</option>
+                <option value="asap">ASAP</option>
               </select>
             </div>
           </div>
           <div class="form-group">
-            <label for="message">Additional Notes</label>
+            <label for="message"><span class="label-text">Additional Notes</span></label>
             <textarea id="message" name="message" rows="3" placeholder="Describe your symptoms or any questions you have…"></textarea>
           </div>
           <button type="submit" class="btn btn--primary btn--full" id="submitBtn">
@@ -348,6 +357,9 @@
         <a href="tel:5013131616" class="footer__phone">
           <i class="fa-solid fa-phone"></i> 501-313-1616
         </a>
+        <a href="mailto:Help@EmergencyDentalArkansas.com" class="footer__email">
+          <i class="fa-solid fa-envelope"></i> Help@EmergencyDentalArkansas.com
+        </a>
       </div>
       <div class="footer__links">
         <h4>Quick Links</h4>
@@ -363,11 +375,12 @@
         <address>
           <p><i class="fa-solid fa-location-dot"></i> 9107 N Rodney Parham Rd<br />Little Rock, AR 72205</p>
           <p><i class="fa-solid fa-phone"></i> <a href="tel:5013131616">501-313-1616</a></p>
+          <p><i class="fa-solid fa-envelope"></i> <a href="mailto:Help@EmergencyDentalArkansas.com">Help@EmergencyDentalArkansas.com</a></p>
         </address>
         <div class="hours-list">
-          <div><span>Mon – Fri</span><span>8:00 AM – 7:00 PM</span></div>
-          <div><span>Saturday</span><span>9:00 AM – 5:00 PM</span></div>
-          <div><span>Sunday</span><span>9:00 AM – 5:00 PM</span></div>
+          <div><span>Mon – Fri</span><span>6:00 PM – 9:00 PM</span></div>
+          <div><span>Saturday</span><span>8:00 AM – 7:00 PM</span></div>
+          <div><span>Sunday</span><span>8:00 AM – 7:00 PM</span></div>
           <div class="emergency-hours"><span>Holidays</span><span>Call for Hours</span></div>
         </div>
       </div>

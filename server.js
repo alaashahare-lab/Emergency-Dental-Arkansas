@@ -1,10 +1,14 @@
 require('dotenv').config();
 const express = require('express');
+const nodemailer = require('nodemailer');
 const path = require('path');
 const rateLimit = require('express-rate-limit');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const CONTACT_EMAIL = 'Help@EmergencyDentalArkansas.com';
+const TWILIO_TO_NUMBER = '+15019520765';
+const twilioAuthCredential = process.env.TWILIO_AUTH_KEY || process.env.TWILIO_AUTH_TOKEN;
 
 // Body parsing middleware
 app.use(express.json());
@@ -29,6 +33,59 @@ const appointmentLimiter = rateLimit({
   message: { success: false, message: 'Too many appointment requests. Please try again later.' }
 });
 
+function buildAppointmentLines({ name, phone, email, service, date, time, message }) {
+  return [
+    'NEW APPOINTMENT REQUEST - Emergency Dental',
+    `Name: ${name}`,
+    `Phone: ${phone}`,
+    email ? `Email: ${email}` : null,
+    `Service: ${service}`,
+    date ? `Preferred Date: ${date}` : null,
+    time ? `Preferred Time: ${time}` : null,
+    message ? `Message: ${message}` : null
+  ].filter(Boolean);
+}
+
+async function sendSmsNotification(smsBody) {
+  if (!process.env.TWILIO_ACCOUNT_SID || !twilioAuthCredential || !process.env.TWILIO_FROM_NUMBER) {
+    console.log('(Configure TWILIO_ACCOUNT_SID, TWILIO_AUTH_KEY, and TWILIO_FROM_NUMBER to enable SMS notifications)');
+    return;
+  }
+
+  const twilio = require('twilio');
+  const client = twilio(process.env.TWILIO_ACCOUNT_SID, twilioAuthCredential);
+  await client.messages.create({
+    body: smsBody,
+    from: process.env.TWILIO_FROM_NUMBER,
+    to: TWILIO_TO_NUMBER
+  });
+}
+
+async function sendEmailNotification(appointmentLines) {
+  if (!process.env.SMTP_HOST || !process.env.SMTP_PORT || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    console.log('(Configure SMTP_* environment variables to enable appointment email notifications)');
+    return;
+  }
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT),
+    secure: process.env.SMTP_SECURE === 'true',
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS
+    }
+  });
+
+  await transporter.sendMail({
+    from: process.env.SMTP_FROM || process.env.SMTP_USER,
+    to: process.env.APPOINTMENT_EMAIL_TO || CONTACT_EMAIL,
+    subject: 'NEW APOINTMENT',
+    text: appointmentLines.join('\n'),
+    html: appointmentLines.map((line) => `<div>${line}</div>`).join('')
+  });
+}
+
 // Appointment form submission endpoint
 app.post('/api/appointment', appointmentLimiter, async (req, res) => {
   const { name, phone, email, service, date, time, message } = req.body;
@@ -41,39 +98,24 @@ app.post('/api/appointment', appointmentLimiter, async (req, res) => {
     });
   }
 
-  const smsBody = [
-    '🦷 NEW APPOINTMENT REQUEST - Emergency Dental',
-    `Name: ${name}`,
-    `Phone: ${phone}`,
-    email ? `Email: ${email}` : null,
-    `Service: ${service}`,
-    date ? `Preferred Date: ${date}` : null,
-    time ? `Preferred Time: ${time}` : null,
-    message ? `Message: ${message}` : null
-  ]
-    .filter(Boolean)
-    .join('\n');
+  const appointmentLines = buildAppointmentLines({ name, phone, email, service, date, time, message });
+  const smsBody = appointmentLines.join('\n');
 
-  // Send SMS via Twilio if credentials are configured
-  if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && process.env.TWILIO_FROM_NUMBER) {
-    try {
-      const twilio = require('twilio');
-      const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
-      await client.messages.create({
-        body: smsBody,
-        from: process.env.TWILIO_FROM_NUMBER,
-        to: '+15013131616'
-      });
-    } catch (err) {
-      console.error('Twilio SMS error:', err.message);
-      // Still return success to the patient — the form was submitted
-    }
-  } else {
-    // Log the appointment details when Twilio is not configured
-    console.log('--- New Appointment Request ---');
-    console.log(smsBody);
-    console.log('------------------------------');
-    console.log('(Configure TWILIO_* environment variables to enable SMS notifications)');
+  console.log('--- New Appointment Request ---');
+  console.log(smsBody);
+  console.log('------------------------------');
+
+  const [smsResult, emailResult] = await Promise.allSettled([
+    sendSmsNotification(smsBody),
+    sendEmailNotification(appointmentLines)
+  ]);
+
+  if (smsResult.status === 'rejected') {
+    console.error('Twilio SMS error:', smsResult.reason.message);
+  }
+
+  if (emailResult.status === 'rejected') {
+    console.error('Appointment email error:', emailResult.reason.message);
   }
 
   res.json({
