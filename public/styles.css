@@ -381,6 +381,11 @@ address { font-style: normal; }
 }
 .emergency-bar__inner {
   display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.emergency-bar__main {
+  display: flex;
   align-items: center;
   gap: 14px;
   flex-wrap: wrap;
@@ -413,6 +418,12 @@ address { font-style: normal; }
   transition: background var(--transition);
 }
 .emergency-bar__cta:hover { background: rgba(255,255,255,0.3); }
+.emergency-bar__disclaimer {
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.84);
+  max-width: 980px;
+}
 
 /* ===========================
    Services Grid

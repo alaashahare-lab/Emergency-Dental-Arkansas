@@ -38,6 +38,7 @@ const translations = {
     emergencyBar: {
       title: 'DENTAL EMERGENCY?',
       message: 'Call us now — we offer same-day relief for toothaches, broken teeth & more.',
+      disclaimer: 'Same-day appointments are subject to availability. Treatment is provided when clinically appropriate. Some cases may require referral or additional visits.',
       cta: 'Call 501-313-1616'
     },
     services: {
@@ -211,6 +212,7 @@ const translations = {
     emergencyBar: {
       title: 'EMERGENCIA DENTAL?',
       message: 'Llamenos ahora. Ofrecemos alivio el mismo dia para dolor de muelas, dientes rotos y mas.',
+      disclaimer: 'Las citas el mismo dia estan sujetas a disponibilidad. El tratamiento se brinda cuando es clinicamente apropiado. Algunos casos pueden requerir referencia o visitas adicionales.',
       cta: 'Llame al 501-313-1616'
     },
     services: {
@@ -523,9 +525,10 @@ function applyLanguage(language) {
   if (trustItems[1]) trustItems[1].innerHTML = '<i class="fa-solid fa-clock"></i> ' + copy.hero.trust[1];
   if (trustItems[2]) trustItems[2].innerHTML = '<i class="fa-solid fa-star"></i> ' + copy.hero.trust[2];
 
-  setText('.emergency-bar__inner strong', copy.emergencyBar.title);
-  const emergencyText = document.querySelector('.emergency-bar__inner span:nth-of-type(2)');
+  setText('.emergency-bar__title', copy.emergencyBar.title);
+  const emergencyText = document.querySelector('.emergency-bar__message');
   if (emergencyText) emergencyText.textContent = copy.emergencyBar.message;
+  setText('.emergency-bar__disclaimer', copy.emergencyBar.disclaimer);
   setHtml('.emergency-bar__cta', '<i class="fa-solid fa-phone-volume"></i> ' + copy.emergencyBar.cta);
 
   const sectionHeaders = document.querySelectorAll('.section-header');
