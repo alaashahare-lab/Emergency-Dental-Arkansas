@@ -23,12 +23,17 @@ const translations = {
       bookNow: 'Book Now'
     },
     hero: {
-      badgeHours: 'After-Hours & Weekends',
-      badgeSchedule: 'Call To Schedule: Mon-Sun 8am-8pm',
       titleHtml: 'Dental Emergencies<br /><span class="accent">Don\'t Wait for Monday</span>',
       subtitle: 'Affordable emergency dental care available evenings, weekends, and holidays in Little Rock. When pain strikes, we\'re here for you.',
       requestButton: 'Request Appointment',
       callButton: 'Call 501-313-1616',
+      hoursTitle: 'Hours',
+      scheduleLabel: 'Call & Scheduling Hrs',
+      scheduleLine: 'Monday-Sunday • 8:00 AM-8:00 PM',
+      scheduleNote: 'Call during these hours to request an appointment.',
+      clinicLabel: 'Clinic Treatment Hrs',
+      clinicPrimary: 'Monday-Friday • 6:00 PM-9:00 PM',
+      clinicSecondary: 'Saturday-Sunday • 8:00 AM-7:00 PM',
       trust: [
         'Affordable Pricing',
         'Same-Day Appointments',
@@ -115,6 +120,7 @@ const translations = {
       description: 'Fill out the form and we will contact you promptly to confirm your appointment time. For immediate emergencies, please call us directly.',
       contact: {
         labels: ['Our Location', 'Call, Text, or Email', 'Hours'],
+        locationHtml: '9107 N Rodney Parham Rd Unit 5<br />Little Rock, AR 72205',
         hoursHtml: 'Mon–Fri: 6pm – 9pm<br />Sat–Sun: 8am – 7pm',
         mapTitle: 'Emergency Dental Arkansas Location'
       },
@@ -171,6 +177,7 @@ const translations = {
       quickLinksTitle: 'Quick Links',
       quickLinks: ['Services', 'Why Choose Us', 'Our Office', 'Book Appointment'],
       contactTitle: 'Contact & Hours',
+      addressHtml: '<i class="fa-solid fa-location-dot"></i> 9107 N Rodney Parham Rd Unit 5<br />Little Rock, AR 72205',
       hoursLabels: ['Mon – Fri', 'Saturday', 'Sunday', 'Holidays'],
       hoursValues: ['6:00 PM – 9:00 PM', '8:00 AM – 7:00 PM', '8:00 AM – 7:00 PM', 'Call for Hours'],
       disclaimer: 'This website is for informational purposes only. For dental emergencies, call 911 or go to the nearest emergency room if experiencing severe swelling or difficulty breathing.',
@@ -197,12 +204,17 @@ const translations = {
       bookNow: 'Reservar'
     },
     hero: {
-      badgeHours: 'Fuera de horario y fines de semana',
-      badgeSchedule: 'Llame para programar: Lun-Dom 8am-8pm',
       titleHtml: 'Emergencias dentales<br /><span class="accent">No espere hasta el lunes</span>',
       subtitle: 'Atencion dental de emergencia accesible disponible por las tardes, fines de semana y dias festivos en Little Rock. Cuando aparece el dolor, estamos aqui para usted.',
       requestButton: 'Solicitar cita',
       callButton: 'Llamar al 501-313-1616',
+      hoursTitle: 'Horario',
+      scheduleLabel: 'Horario de llamadas y citas',
+      scheduleLine: 'Lunes-Domingo • 8:00 AM-8:00 PM',
+      scheduleNote: 'Llame durante este horario para solicitar una cita.',
+      clinicLabel: 'Horario de tratamiento',
+      clinicPrimary: 'Lunes-Viernes • 6:00 PM-9:00 PM',
+      clinicSecondary: 'Sabado-Domingo • 8:00 AM-7:00 PM',
       trust: [
         'Precios accesibles',
         'Citas el mismo dia',
@@ -289,6 +301,7 @@ const translations = {
       description: 'Complete el formulario y nos comunicaremos con usted pronto para confirmar su horario. Para emergencias inmediatas, llamenos directamente.',
       contact: {
         labels: ['Nuestra ubicacion', 'Llamar, enviar texto o correo', 'Horario'],
+        locationHtml: '9107 N Rodney Parham Rd Unit 5<br />Little Rock, AR 72205',
         hoursHtml: 'Lun–Vie: 6pm – 9pm<br />Sab–Dom: 8am – 7pm',
         mapTitle: 'Ubicacion de Emergency Dental Arkansas'
       },
@@ -345,6 +358,7 @@ const translations = {
       quickLinksTitle: 'Enlaces rapidos',
       quickLinks: ['Servicios', 'Por que elegirnos', 'Nuestro consultorio', 'Reservar cita'],
       contactTitle: 'Contacto y horario',
+      addressHtml: '<i class="fa-solid fa-location-dot"></i> 9107 N Rodney Parham Rd Unit 5<br />Little Rock, AR 72205',
       hoursLabels: ['Lun – Vie', 'Sabado', 'Domingo', 'Dias festivos'],
       hoursValues: ['6:00 PM – 9:00 PM', '8:00 AM – 7:00 PM', '8:00 AM – 7:00 PM', 'Llame para horarios'],
       disclaimer: 'Este sitio web es solo para fines informativos. Para emergencias dentales, llame al 911 o vaya a la sala de emergencias mas cercana si tiene hinchazon severa o dificultad para respirar.',
@@ -513,12 +527,17 @@ function applyLanguage(language) {
   if (navLinks[3]) navLinks[3].textContent = copy.nav.contact;
   setText('.nav__cta', copy.nav.bookNow);
 
-  setIconText('.hero__badge--hours', 'fa-solid fa-clock', copy.hero.badgeHours);
-  setIconText('.hero__badge--schedule', 'fa-solid fa-phone', copy.hero.badgeSchedule);
   setHtml('.hero__title', copy.hero.titleHtml);
   setText('.hero__subtitle', copy.hero.subtitle);
   setHtml('.hero__actions .btn--primary', '<i class="fa-solid fa-calendar-plus"></i> ' + copy.hero.requestButton);
   setHtml('.hero__actions .btn--outline', '<i class="fa-solid fa-phone"></i> ' + copy.hero.callButton);
+  setText('.hero-hours__title', copy.hero.hoursTitle);
+  setText('.hero-hours__label--schedule', copy.hero.scheduleLabel);
+  setText('.hero-hours__line--schedule', copy.hero.scheduleLine);
+  setText('.hero-hours__note', copy.hero.scheduleNote);
+  setText('.hero-hours__label--clinic', copy.hero.clinicLabel);
+  setText('.hero-hours__line--clinic-primary', copy.hero.clinicPrimary);
+  setText('.hero-hours__line--clinic-secondary', copy.hero.clinicSecondary);
 
   const trustItems = document.querySelectorAll('.trust-item');
   if (trustItems[0]) trustItems[0].innerHTML = '<i class="fa-solid fa-shield-halved"></i> ' + copy.hero.trust[0];
@@ -578,6 +597,7 @@ function applyLanguage(language) {
   if (contactLabels[0]) contactLabels[0].textContent = copy.appointment.contact.labels[0];
   if (contactLabels[1]) contactLabels[1].textContent = copy.appointment.contact.labels[1];
   if (contactLabels[2]) contactLabels[2].textContent = copy.appointment.contact.labels[2];
+  setHtml('.contact-card__location', copy.appointment.contact.locationHtml);
   const contactHours = document.querySelector('.contact-card__item:last-child span');
   if (contactHours) contactHours.innerHTML = copy.appointment.contact.hoursHtml;
   setAttr('.map-embed iframe', 'title', copy.appointment.contact.mapTitle);
@@ -614,6 +634,7 @@ function applyLanguage(language) {
     if (footerLinks[index]) footerLinks[index].textContent = label;
   });
   setText('.footer__contact h4', copy.footer.contactTitle);
+  setHtml('.footer__address-location', copy.footer.addressHtml);
 
   const hoursRows = document.querySelectorAll('.hours-list > div');
   copy.footer.hoursLabels.forEach((label, index) => {

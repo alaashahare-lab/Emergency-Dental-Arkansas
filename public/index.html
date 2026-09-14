@@ -51,27 +51,52 @@
   <section class="hero" id="hero">
     <div class="hero__overlay"></div>
     <div class="container hero__content">
-      <div class="hero__badges">
-        <span class="hero__badge hero__badge--hours"><i class="fa-solid fa-clock"></i> After-Hours &amp; Weekends</span>
-        <span class="hero__badge hero__badge--schedule"><i class="fa-solid fa-phone"></i> Call To Schedule: Mon-Sun 8am-8pm</span>
-      </div>
-      <h1 class="hero__title">Dental Emergencies<br /><span class="accent">Don't Wait for Monday</span></h1>
-      <p class="hero__subtitle">
-        Affordable emergency dental care available evenings, weekends, and holidays in Little Rock.
-        When pain strikes, we're here for you.
-      </p>
-      <div class="hero__actions">
-        <a href="#appointment" class="btn btn--primary btn--lg">
-          <i class="fa-solid fa-calendar-plus"></i> Request Appointment
-        </a>
-        <a href="tel:5013131616" class="btn btn--outline btn--lg">
-          <i class="fa-solid fa-phone"></i> Call 501-313-1616
-        </a>
-      </div>
-      <div class="hero__trust">
-        <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> Affordable Pricing</div>
-        <div class="trust-item"><i class="fa-solid fa-clock"></i> Same-Day Appointments</div>
-        <div class="trust-item"><i class="fa-solid fa-star"></i> Experienced Dentists</div>
+      <div class="hero__layout">
+        <div class="hero__copy">
+          <h1 class="hero__title">Dental Emergencies<br /><span class="accent">Don't Wait for Monday</span></h1>
+          <p class="hero__subtitle">
+            Affordable emergency dental care available evenings, weekends, and holidays in Little Rock.
+            When pain strikes, we're here for you.
+          </p>
+          <div class="hero__actions">
+            <a href="#appointment" class="btn btn--primary btn--lg">
+              <i class="fa-solid fa-calendar-plus"></i> Request Appointment
+            </a>
+            <a href="tel:5013131616" class="btn btn--outline btn--lg">
+              <i class="fa-solid fa-phone"></i> Call 501-313-1616
+            </a>
+          </div>
+          <div class="hero__trust">
+            <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> Affordable Pricing</div>
+            <div class="trust-item"><i class="fa-solid fa-clock"></i> Same-Day Appointments</div>
+            <div class="trust-item"><i class="fa-solid fa-star"></i> Experienced Dentists</div>
+          </div>
+        </div>
+
+        <aside class="hero-hours" aria-label="Office hours">
+          <h2 class="hero-hours__title">Hours</h2>
+          <div class="hero-hours__section">
+            <div class="hero-hours__icon hero-hours__icon--schedule">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div class="hero-hours__content-block">
+              <p class="hero-hours__label hero-hours__label--schedule">Call &amp; Scheduling Hrs</p>
+              <p class="hero-hours__line hero-hours__line--schedule">Monday-Sunday • 8:00 AM-8:00 PM</p>
+              <p class="hero-hours__note">Call during these hours to request an appointment.</p>
+            </div>
+          </div>
+          <div class="hero-hours__divider"></div>
+          <div class="hero-hours__section">
+            <div class="hero-hours__icon hero-hours__icon--clinic">
+              <i class="fa-regular fa-clock"></i>
+            </div>
+            <div class="hero-hours__content-block">
+              <p class="hero-hours__label hero-hours__label--clinic">Clinic Treatment Hrs</p>
+              <p class="hero-hours__line hero-hours__line--clinic-primary">Monday-Friday • 6:00 PM-9:00 PM</p>
+              <p class="hero-hours__line hero-hours__line--clinic-secondary">Saturday-Sunday • 8:00 AM-7:00 PM</p>
+            </div>
+          </div>
+        </aside>
       </div>
     </div>
     <div class="hero__scroll-hint">
@@ -239,7 +264,7 @@
             <i class="fa-solid fa-location-dot"></i>
             <div>
               <strong>Our Location</strong>
-              <span>9107 N Rodney Parham Rd<br />Little Rock, AR 72205</span>
+              <span class="contact-card__location">9107 N Rodney Parham Rd Unit 5<br />Little Rock, AR 72205</span>
             </div>
           </div>
           <div class="contact-card__item">
@@ -379,7 +404,7 @@
       <div class="footer__contact">
         <h4>Contact &amp; Hours</h4>
         <address>
-          <p><i class="fa-solid fa-location-dot"></i> 9107 N Rodney Parham Rd<br />Little Rock, AR 72205</p>
+          <p class="footer__address-location"><i class="fa-solid fa-location-dot"></i> 9107 N Rodney Parham Rd Unit 5<br />Little Rock, AR 72205</p>
           <p><i class="fa-solid fa-phone"></i> <a href="tel:5013131616">501-313-1616</a></p>
           <p><i class="fa-solid fa-envelope"></i> <a href="mailto:Help@EmergencyDentalArkansas.com">Help@EmergencyDentalArkansas.com</a></p>
         </address>

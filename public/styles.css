@@ -289,34 +289,17 @@ address { font-style: normal; }
 .hero__content {
   position: relative;
   z-index: 1;
-  max-width: 780px;
+  max-width: 1200px;
   padding: 80px 24px;
 }
-.hero__badges {
-  display: flex;
+.hero__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 460px);
+  gap: 34px;
   align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
 }
-.hero__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.25);
-  color: var(--teal-400);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: 999px;
-}
-.hero__badge--schedule {
-  color: var(--white);
-  background: rgba(13,148,136,0.22);
-  border-color: rgba(20,184,166,0.4);
+.hero__copy {
+  max-width: 620px;
 }
 .hero__title {
   font-family: var(--font-display);
@@ -353,6 +336,79 @@ address { font-style: normal; }
   color: rgba(255,255,255,0.75);
 }
 .trust-item i { color: var(--teal-400); }
+
+.hero-hours {
+  background: rgba(9, 27, 53, 0.72);
+  border: 1px solid rgba(96,165,250,0.28);
+  border-radius: 24px;
+  padding: 34px 36px;
+  box-shadow: 0 18px 48px rgba(3, 12, 28, 0.28);
+  backdrop-filter: blur(8px);
+}
+.hero-hours__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height: 1;
+  color: var(--white);
+  margin-bottom: 28px;
+}
+.hero-hours__section {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+.hero-hours__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  border: 3px solid currentColor;
+}
+.hero-hours__icon--schedule {
+  color: #34e5cf;
+}
+.hero-hours__icon--clinic {
+  color: #4ba6ff;
+}
+.hero-hours__content-block {
+  min-width: 0;
+}
+.hero-hours__label {
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.hero-hours__label--schedule {
+  color: #34e5cf;
+}
+.hero-hours__label--clinic {
+  color: #4ba6ff;
+}
+.hero-hours__line {
+  color: rgba(255,255,255,0.96);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.hero-hours__line + .hero-hours__line {
+  margin-top: 4px;
+}
+.hero-hours__note {
+  margin-top: 10px;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.hero-hours__divider {
+  height: 1px;
+  margin: 26px 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.14), rgba(255,255,255,0));
+}
 
 .hero__scroll-hint {
   position: absolute;
@@ -853,6 +909,9 @@ address { font-style: normal; }
    Responsive
    =========================== */
 @media (max-width: 960px) {
+  .hero__layout { grid-template-columns: 1fr; }
+  .hero__copy { max-width: none; }
+  .hero-hours { max-width: 720px; }
   .why-grid { grid-template-columns: 1fr; }
   .why-image { display: none; }
   .appt-grid { grid-template-columns: 1fr; }
@@ -902,6 +961,18 @@ address { font-style: normal; }
 }
 
 @media (max-width: 480px) {
+  .hero-hours {
+    padding: 26px 20px;
+    border-radius: 20px;
+  }
+  .hero-hours__section {
+    gap: 14px;
+  }
+  .hero-hours__icon {
+    width: 54px;
+    height: 54px;
+    font-size: 1.3rem;
+  }
   .lang-switch__btn {
     min-width: 38px;
     padding: 8px 9px;
