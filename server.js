@@ -7,7 +7,7 @@ const rateLimit = require('express-rate-limit');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const CONTACT_EMAIL = 'Help@EmergencyDentalArkansas.com';
-const TWILIO_TO_NUMBER = '+15019520765';
+const TWILIO_TO_NUMBER = '+15013131616';
 const twilioAuthCredential = process.env.TWILIO_AUTH_KEY || process.env.TWILIO_AUTH_TOKEN;
 
 // Body parsing middleware
@@ -62,23 +62,23 @@ async function sendSmsNotification(smsBody) {
 }
 
 async function sendEmailNotification(appointmentLines) {
-  if (!process.env.SMTP_HOST || !process.env.SMTP_PORT || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
-    console.log('(Configure SMTP_* environment variables to enable appointment email notifications)');
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+    console.log('(Configure EMAIL_USER and EMAIL_PASSWORD to enable appointment email notifications)');
     return;
   }
 
   const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT),
-    secure: process.env.SMTP_SECURE === 'true',
+    host: 'smtp.hostinger.com',
+    port: 465,
+    secure: true,
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD
     }
   });
 
   await transporter.sendMail({
-    from: process.env.SMTP_FROM || process.env.SMTP_USER,
+    from: process.env.SMTP_FROM || process.env.EMAIL_USER,
     to: process.env.APPOINTMENT_EMAIL_TO || CONTACT_EMAIL,
     subject: 'NEW APOINTMENT',
     text: appointmentLines.join('\n'),

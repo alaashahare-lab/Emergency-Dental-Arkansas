@@ -6,7 +6,7 @@ const translations = {
   en: {
     meta: {
       lang: 'en',
-      title: 'Emergency Dental',
+      title: 'Emergency Dental Arkansas',
       description: 'Affordable emergency and after-hours dental care in Little Rock, AR. Open weekends. Walk-ins welcome. Call 501-313-1616.'
     },
     common: {
@@ -114,7 +114,7 @@ const translations = {
       contact: {
         labels: ['Our Location', 'Call, Text, or Email', 'Hours'],
         hoursHtml: 'Mon–Fri: 6pm – 9pm<br />Sat–Sun: 8am – 7pm',
-        mapTitle: 'Emergency Dental Location'
+        mapTitle: 'Emergency Dental Arkansas Location'
       },
       form: {
         labels: {
@@ -172,13 +172,13 @@ const translations = {
       hoursLabels: ['Mon – Fri', 'Saturday', 'Sunday', 'Holidays'],
       hoursValues: ['6:00 PM – 9:00 PM', '8:00 AM – 7:00 PM', '8:00 AM – 7:00 PM', 'Call for Hours'],
       disclaimer: 'This website is for informational purposes only. For dental emergencies, call 911 or go to the nearest emergency room if experiencing severe swelling or difficulty breathing.',
-      copyright: '&copy; <span id="year"></span> Emergency Dental. All rights reserved.'
+      copyright: '&copy; <span id="year"></span> Emergency Dental Arkansas. All rights reserved.'
     }
   },
   es: {
     meta: {
       lang: 'es',
-      title: 'Emergency Dental',
+      title: 'Emergency Dental Arkansas',
       description: 'Atencion dental de emergencia y fuera de horario a precios accesibles en Little Rock, AR. Abierto los fines de semana. Se aceptan pacientes sin cita. Llame al 501-313-1616.'
     },
     common: {
@@ -286,7 +286,7 @@ const translations = {
       contact: {
         labels: ['Nuestra ubicacion', 'Llamar, enviar texto o correo', 'Horario'],
         hoursHtml: 'Lun–Vie: 6pm – 9pm<br />Sab–Dom: 8am – 7pm',
-        mapTitle: 'Ubicacion de Emergency Dental'
+        mapTitle: 'Ubicacion de Emergency Dental Arkansas'
       },
       form: {
         labels: {
@@ -344,7 +344,7 @@ const translations = {
       hoursLabels: ['Lun – Vie', 'Sabado', 'Domingo', 'Dias festivos'],
       hoursValues: ['6:00 PM – 9:00 PM', '8:00 AM – 7:00 PM', '8:00 AM – 7:00 PM', 'Llame para horarios'],
       disclaimer: 'Este sitio web es solo para fines informativos. Para emergencias dentales, llame al 911 o vaya a la sala de emergencias mas cercana si tiene hinchazon severa o dificultad para respirar.',
-      copyright: '&copy; <span id="year"></span> Emergency Dental. Todos los derechos reservados.'
+      copyright: '&copy; <span id="year"></span> Emergency Dental Arkansas. Todos los derechos reservados.'
     }
   }
 };
