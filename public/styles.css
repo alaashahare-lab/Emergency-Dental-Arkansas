@@ -292,6 +292,13 @@ address { font-style: normal; }
   max-width: 780px;
   padding: 80px 24px;
 }
+.hero__badges {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
 .hero__badge {
   display: inline-flex;
   align-items: center;
@@ -305,7 +312,11 @@ address { font-style: normal; }
   text-transform: uppercase;
   padding: 6px 14px;
   border-radius: 999px;
-  margin-bottom: 20px;
+}
+.hero__badge--schedule {
+  color: var(--white);
+  background: rgba(13,148,136,0.22);
+  border-color: rgba(20,184,166,0.4);
 }
 .hero__title {
   font-family: var(--font-display);

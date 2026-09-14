@@ -23,7 +23,8 @@ const translations = {
       bookNow: 'Book Now'
     },
     hero: {
-      badge: 'After-Hours & Weekends',
+      badgeHours: 'After-Hours & Weekends',
+      badgeSchedule: 'Call To Schedule: Mon-Sun 8am-8pm',
       titleHtml: 'Dental Emergencies<br /><span class="accent">Don\'t Wait for Monday</span>',
       subtitle: 'Affordable emergency dental care available evenings, weekends, and holidays in Little Rock. When pain strikes, we\'re here for you.',
       requestButton: 'Request Appointment',
@@ -195,7 +196,8 @@ const translations = {
       bookNow: 'Reservar'
     },
     hero: {
-      badge: 'Fuera de horario y fines de semana',
+      badgeHours: 'Fuera de horario y fines de semana',
+      badgeSchedule: 'Llame para programar: Lun-Dom 8am-8pm',
       titleHtml: 'Emergencias dentales<br /><span class="accent">No espere hasta el lunes</span>',
       subtitle: 'Atencion dental de emergencia accesible disponible por las tardes, fines de semana y dias festivos en Little Rock. Cuando aparece el dolor, estamos aqui para usted.',
       requestButton: 'Solicitar cita',
@@ -509,7 +511,8 @@ function applyLanguage(language) {
   if (navLinks[3]) navLinks[3].textContent = copy.nav.contact;
   setText('.nav__cta', copy.nav.bookNow);
 
-  setIconText('.hero__badge', 'fa-solid fa-clock', copy.hero.badge);
+  setIconText('.hero__badge--hours', 'fa-solid fa-clock', copy.hero.badgeHours);
+  setIconText('.hero__badge--schedule', 'fa-solid fa-phone', copy.hero.badgeSchedule);
   setHtml('.hero__title', copy.hero.titleHtml);
   setText('.hero__subtitle', copy.hero.subtitle);
   setHtml('.hero__actions .btn--primary', '<i class="fa-solid fa-calendar-plus"></i> ' + copy.hero.requestButton);
