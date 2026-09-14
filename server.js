@@ -48,8 +48,7 @@ function buildAppointmentLines({ name, phone, email, service, date, time, messag
 
 async function sendSmsNotification(smsBody) {
   if (!process.env.TWILIO_ACCOUNT_SID || !twilioAuthCredential || !process.env.TWILIO_FROM_NUMBER) {
-    console.log('(Configure TWILIO_ACCOUNT_SID, TWILIO_AUTH_KEY, and TWILIO_FROM_NUMBER to enable SMS notifications)');
-    return;
+    throw new Error('SMS notifications are not configured.');
   }
 
   const twilio = require('twilio');
@@ -63,8 +62,7 @@ async function sendSmsNotification(smsBody) {
 
 async function sendEmailNotification(appointmentLines) {
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
-    console.log('(Configure EMAIL_USER and EMAIL_PASSWORD to enable appointment email notifications)');
-    return;
+    throw new Error('Appointment email notifications are not configured.');
   }
 
   const transporter = nodemailer.createTransport({
@@ -110,12 +108,27 @@ app.post('/api/appointment', appointmentLimiter, async (req, res) => {
     sendEmailNotification(appointmentLines)
   ]);
 
+  const failedNotifications = [];
+
   if (smsResult.status === 'rejected') {
     console.error('Twilio SMS error:', smsResult.reason.message);
+    failedNotifications.push('text message');
   }
 
   if (emailResult.status === 'rejected') {
     console.error('Appointment email error:', emailResult.reason.message);
+    failedNotifications.push('email');
+  }
+
+  if (failedNotifications.length > 0) {
+    const notificationList = failedNotifications.length === 2
+      ? 'text message and email'
+      : failedNotifications[0];
+
+    return res.status(502).json({
+      success: false,
+      message: `We received your appointment request, but the office ${notificationList} notification failed. Please call us directly at 501-313-1616.`
+    });
   }
 
   res.json({

@@ -631,10 +631,10 @@ function showMessage(el, show) {
   if (show) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-function showError(errorKey = 'generic') {
+function showError(errorKey = 'generic', customMessage = '') {
   const copy = getTranslation();
   formError.dataset.errorKey = errorKey;
-  formErrorText.innerHTML = `${copy.appointment.form.errors[errorKey] || copy.appointment.form.errors.generic} ${supportPhoneMarkup}.`;
+  formErrorText.innerHTML = customMessage || `${copy.appointment.form.errors[errorKey] || copy.appointment.form.errors.generic} ${supportPhoneMarkup}.`;
   showMessage(formError, true);
 }
 
@@ -698,7 +698,7 @@ form.addEventListener('submit', async (e) => {
     const result = await response.json().catch(() => null);
 
     if (!response.ok) {
-      showError(resolveErrorKey(result?.message));
+      showError(resolveErrorKey(result?.message), result?.message || '');
       return;
     }
 
@@ -706,7 +706,7 @@ form.addEventListener('submit', async (e) => {
       form.hidden = true;
       showMessage(formSuccess, true);
     } else {
-      showError(resolveErrorKey(result?.message));
+      showError(resolveErrorKey(result?.message), result?.message || '');
     }
   } catch {
     showError('network');
